@@ -4,6 +4,7 @@ from django.db import models
 class AuthorModel(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    author_image = models.ImageField(upload_to='author/')
     birth_date = models.DateField()
 
     def __str__(self):
@@ -19,6 +20,8 @@ class AuthorModel(models.Model):
 class BookModel(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
+    cover_image = models.ImageField(upload_to='books/')
+    book_file = models.FileField(upload_to='files/books/')
     publication_date = models.DateField()
     author = models.ForeignKey(AuthorModel, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=13, unique=True)

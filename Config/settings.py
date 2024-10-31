@@ -12,7 +12,10 @@ SECRET_KEY = 'django-insecure-71pu#_sf-7nl+a_hwp377-(am5uk!-ci==w4cj8%ml@9+-9^m&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1',  # lokal kompyuter uchun
+                 '172.20.1.90',  # API’ga kirayotgan IP manzil
+                 '10.253.66.215',
+                 'localhost', ]
 
 # Application definition
 
@@ -23,11 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     "app_books",
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -36,7 +41,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'Config.urls'
 
 TEMPLATES = [
